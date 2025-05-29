@@ -1,0 +1,24 @@
+[build]
+  base = "frontend/"
+  publish = "build/"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "16"
+
+# Redirect all routes to index.html for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Proxy API requests to backend when developing locally
+[[redirects]]
+  from = "/api/*"
+  to = "http://localhost:5000/api/:splat"
+  status = 200
+  force = true
+  conditions = {Role = ["development"]}
+
+# For production, you'll need to set up environment variables in Netlify
+# to point to your actual backend API URL
