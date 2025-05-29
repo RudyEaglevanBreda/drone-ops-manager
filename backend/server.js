@@ -16,6 +16,10 @@ const { errorHandler } = require('./middleware/errorHandler');
 // Initialize express app
 const app = express();
 
+// Initialize database schema if needed
+const { initializeDatabase } = require('./config/db-init');
+initializeDatabase().catch(err => console.error('Database initialization error:', err));
+
 // Middleware
 // Configure CORS for production
 const corsOptions = {
