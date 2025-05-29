@@ -1,10 +1,11 @@
 [build]
-  base = "frontend/"
-  publish = "build/"
-  command = "npm run build"
+  base = "frontend"
+  publish = "build"
+  command = "CI=false npm run build"
 
 [build.environment]
   NODE_VERSION = "16"
+  REACT_APP_API_URL = "https://drone-ops-manager-api.onrender.com/api"
 
 # Redirect all routes to index.html for SPA routing
 [[redirects]]
