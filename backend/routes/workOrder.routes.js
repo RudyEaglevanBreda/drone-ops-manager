@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const WorkOrderController = require('../controllers/workOrder.controller');
-const { authenticateToken } = require('../middleware/auth.middleware');
+const { auth } = require('../middleware/auth.middleware');
 
 // Work Order routes - all protected by authentication
-router.use(authenticateToken);
+router.use(auth);
 
 router.get('/', WorkOrderController.getAllWorkOrders);
 router.get('/project/:projectId', WorkOrderController.getWorkOrdersByProject);

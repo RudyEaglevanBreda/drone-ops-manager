@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const FlightController = require('../controllers/flight.controller');
-const { authenticateToken } = require('../middleware/auth.middleware');
+const { auth } = require('../middleware/auth.middleware');
 
 // Flight routes - all protected by authentication
-router.use(authenticateToken);
+router.use(auth);
 
 // router.get('/', FlightController.getAllFlights); // Not implemented yet
 router.get('/workorder/:workOrderId', FlightController.getFlightsByWorkOrder);

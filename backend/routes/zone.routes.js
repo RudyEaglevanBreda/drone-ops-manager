@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const ZoneController = require('../controllers/zone.controller');
-const { authenticateToken } = require('../middleware/auth.middleware');
+const { auth } = require('../middleware/auth.middleware');
 
 // Zone routes - all protected by authentication
-router.use(authenticateToken);
+router.use(auth);
 
 // Get zones by project is implemented
 router.get('/project/:projectId', ZoneController.getZonesByProject);

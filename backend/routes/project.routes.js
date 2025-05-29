@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const ProjectController = require('../controllers/project.controller');
-const { authenticateToken } = require('../middleware/auth.middleware');
+const { auth } = require('../middleware/auth.middleware');
 
 // Project routes - all protected by authentication
-router.use(authenticateToken);
+router.use(auth);
 
 router.get('/', ProjectController.getAllProjects);
 router.get('/:id', ProjectController.getProjectById);
