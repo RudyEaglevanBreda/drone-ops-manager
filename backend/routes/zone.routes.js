@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { getAllZones, getZonesByProject, getZoneById, createZone, updateZone, deleteZone } = require('../controllers/zone.controller');
+const ZoneController = require('../controllers/zone.controller');
 const { authenticateToken } = require('../middleware/auth.middleware');
 
 // Zone routes - all protected by authentication
 router.use(authenticateToken);
 
-router.get('/', getAllZones);
-router.get('/project/:projectId', getZonesByProject);
-router.get('/:id', getZoneById);
-router.post('/', createZone);
-router.put('/:id', updateZone);
-router.delete('/:id', deleteZone);
+// Get zones by project is implemented
+router.get('/project/:projectId', ZoneController.getZonesByProject);
+router.get('/:id', ZoneController.getZoneById);
+router.post('/', ZoneController.create);
+router.put('/:id', ZoneController.updateZone);
+router.delete('/:id', ZoneController.deleteZone);
+
+// Note: getAllZones is not implemented in the controller
 
 module.exports = router;

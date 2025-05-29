@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { getAllFlights, getFlightsByWorkOrder, getFlightById, createFlight, updateFlight, deleteFlight } = require('../controllers/flight.controller');
+const FlightController = require('../controllers/flight.controller');
 const { authenticateToken } = require('../middleware/auth.middleware');
 
 // Flight routes - all protected by authentication
 router.use(authenticateToken);
 
-router.get('/', getAllFlights);
-router.get('/workorder/:workOrderId', getFlightsByWorkOrder);
-router.get('/:id', getFlightById);
-router.post('/', createFlight);
-router.put('/:id', updateFlight);
-router.delete('/:id', deleteFlight);
+// router.get('/', FlightController.getAllFlights); // Not implemented yet
+router.get('/workorder/:workOrderId', FlightController.getFlightsByWorkOrder);
+router.get('/:id', FlightController.getFlightById);
+router.post('/', FlightController.create);
+router.put('/:id', FlightController.updateFlight);
+router.delete('/:id', FlightController.deleteFlight);
 
 module.exports = router;

@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { login, register, getCurrentUser, updateProfile, changePassword } = require('../controllers/auth.controller');
+const AuthController = require('../controllers/auth.controller');
 const { authenticateToken } = require('../middleware/auth.middleware');
 
 // Authentication routes
-router.post('/register', register);
-router.post('/login', login);
-router.get('/me', authenticateToken, getCurrentUser);
-router.put('/profile', authenticateToken, updateProfile);
-router.put('/change-password', authenticateToken, changePassword);
+router.post('/register', AuthController.register);
+router.post('/login', AuthController.login);
+router.get('/me', authenticateToken, AuthController.getProfile);
+
+// These routes aren't implemented yet, commenting out for now
+// router.put('/profile', authenticateToken, AuthController.updateProfile);
+// router.put('/change-password', authenticateToken, AuthController.changePassword);
 
 module.exports = router;
